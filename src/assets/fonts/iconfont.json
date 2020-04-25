@@ -1,0 +1,23 @@
+{
+  "id": "1780402",
+  "name": "vhr",
+  "font_family": "iconfont",
+  "css_prefix_text": "icon-",
+  "description": "",
+  "glyphs": [
+    {
+      "icon_id": "5700816",
+      "name": "password",
+      "font_class": "password",
+      "unicode": "e608",
+      "unicode_decimal": 58888
+    },
+    {
+      "icon_id": "11674755",
+      "name": "account-fill",
+      "font_class": "account-fill",
+      "unicode": "e7aa",
+      "unicode_decimal": 59306
+    }
+  ]
+}
