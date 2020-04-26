@@ -36,7 +36,7 @@ export const formatRoutes = (routes) => {
       children: children,
       component(resolve) {
         if(component.startsWith("Home")) {
-          require(['../views/' + component + '.vue'], resolve) // 懒加载
+          require(['../views/' + component + '.vue'], resolve) // 懒加载[vue异步组件按需加载]
         } else if(component.startsWith("Emp")) {
           require(['../views/emp/' + component + '.vue'], resolve)
         }else if(component.startsWith("Per")) {

@@ -4,7 +4,8 @@ import Vue from 'vue'
 import 'element-ui/lib/theme-chalk/index.css'
 import { Button ,Form,FormItem,Input,Checkbox,Message,
     Container, Header, Aside, Main,
-    Dropdown, DropdownMenu, DropdownItem, MessageBox,} from 'element-ui'
+    Dropdown, DropdownMenu, DropdownItem, MessageBox,
+    Menu, Submenu, MenuItem,Breadcrumb, BreadcrumbItem} from 'element-ui'
 
 Vue.use(Button)
 Vue.use(Form)
@@ -18,6 +19,11 @@ Vue.use(Main)
 Vue.use(Dropdown)
 Vue.use(DropdownMenu)
 Vue.use(DropdownItem)
+Vue.use(Menu)
+Vue.use(Submenu)
+Vue.use(MenuItem)
+Vue.use(Breadcrumb)
+Vue.use(BreadcrumbItem)
 
 // 把Messag挂载到Vue的原型对象上
 Vue.prototype.$message = Message

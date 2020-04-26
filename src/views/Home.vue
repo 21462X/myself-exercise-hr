@@ -16,9 +16,10 @@
       </el-header>
       <el-container>
         <el-aside width="200px">
+          <!-- 侧边栏导航菜单 -->
           <el-menu router unique-opened>
             <el-submenu :index="index.toString()" v-for="(item, index) in routes"
-                        :key="index" v-if="!item.hidden">
+                        v-if="!item.hidden" :key="index" >
               <template slot="title">
                 <i :class="item.iconCls" style="color: #4186b3; margin-right: 8px"></i>
                 <span>{{item.name}}</span>
@@ -31,13 +32,14 @@
           </el-menu>
         </el-aside>
         <el-main>
+          <!-- 面包屑 -->
           <el-breadcrumb separator-class="el-icon-arrow-right"
                          v-if="this.$router.currentRoute.path !== '/home'">
             <el-breadcrumb-item :to="{ path: '/home' }">首页</el-breadcrumb-item>
             <el-breadcrumb-item>{{this.$router.currentRoute.name}}</el-breadcrumb-item>
           </el-breadcrumb>
           <div class="home_welcome" v-else>欢迎来到微人事</div>
-          <router-view/>
+           <router-view/>
         </el-main>
       </el-container>
     </el-container>
