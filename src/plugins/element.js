@@ -6,8 +6,14 @@ import { Button ,Form,FormItem,Input,Checkbox,Message,
     Container, Header, Aside, Main,
     Dropdown, DropdownMenu, DropdownItem, MessageBox,
     Menu, Submenu, MenuItem,Breadcrumb, BreadcrumbItem,
-    Tabs,TabPane} from 'element-ui'
+    Tabs,TabPane,
+    Table, TableColumn,
+     Dialog,Tag} from 'element-ui'
 
+Vue.use(Table)
+Vue.use(TableColumn)
+Vue.use(Dialog)
+Vue.use(Tag)
 Vue.use(Button)
 Vue.use(Form)
 Vue.use(FormItem)

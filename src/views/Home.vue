@@ -40,7 +40,7 @@
           </el-breadcrumb>
           <div class="home_welcome" v-else>欢迎来到微人事</div>
            <router-view/>
-           <router-view class="home_main"/>
+           <!-- <router-view class="home_main"/> -->
         </el-main>
       </el-container>
     </el-container>
