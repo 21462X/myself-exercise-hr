@@ -1,19 +1,29 @@
 <template>
   <div>
     <div>
-      <el-input size="small" class="input_type" placeholder="添加职位..."
-        prefix-icon="el-icon-plus" @keydown.enter.native="addPosition" v-model="pos.name">
-      </el-input>
-      <el-button type="primary" icon="el-icon-plus" size="small" @click="addPosition">
-        添加
-      </el-button>
+      <el-input
+        size="small"
+        class="input_type"
+        placeholder="添加职位..."
+        prefix-icon="el-icon-plus"
+        @keydown.enter.native="addPosition"
+        v-model="pos.name"
+      ></el-input>
+      <el-button type="primary" icon="el-icon-plus" size="small" @click="addPosition">添加</el-button>
       <div></div>
-      <el-table :data="positions" stripe border type="small" style="width: 70%" @selection-change="handleSelectionChange">
-        <el-table-column type="selection" width="56"> </el-table-column>
-        <el-table-column prop="id" label="编号" width="56"> </el-table-column>
-        <el-table-column prop="name" label="职位名称" width="180"> </el-table-column>
-        <el-table-column prop="createdate" label="创建时间" width="200"> </el-table-column>
-         <el-table-column prop="enabled" label="是否启用" width="200">
+      <el-table
+        :data="positions"
+        stripe
+        border
+        type="small"
+        style="width: 70%"
+        @selection-change="handleSelectionChange"
+      >
+        <el-table-column type="selection" width="56"></el-table-column>
+        <el-table-column prop="id" label="编号" width="56"></el-table-column>
+        <el-table-column prop="name" label="职位名称" width="180"></el-table-column>
+        <el-table-column prop="createdate" label="创建时间" width="200"></el-table-column>
+        <el-table-column prop="enabled" label="是否启用" width="200">
           <template slot-scope="scope">
             <el-tag v-if="scope.row.enabled" type="success">已启用</el-tag>
             <el-tag v-else type="warning">未启用</el-tag>
@@ -26,23 +36,26 @@
           </template>
         </el-table-column>
       </el-table>
-      <el-button type="danger" size="small" style="margin-top: 8px" @click="deleteMany"
-                 :disabled="multipleSelection.length === 0">
-        批量删除
-      </el-button>
+      <el-button
+        type="danger"
+        size="small"
+        style="margin-top: 8px"
+        @click="deleteMany"
+        :disabled="multipleSelection.length === 0"
+      >批量删除</el-button>
     </div>
     <el-dialog title="修改职位" :visible.sync="dialogVisible" width="30%">
       <div>
         <el-tag>职位名称</el-tag>
         <el-input class="update_input" size="small" v-model="updatePos.name"></el-input>
       </div>
-       <div>
+      <div>
         <el-tag>是否启用</el-tag>
-        <el-switch v-model="updatePos.enabled" class="update_input" ></el-switch>
+        <el-switch v-model="updatePos.enabled" class="update_input"></el-switch>
       </div>
       <span slot="footer" class="dialog-footer">
-        <el-button @click="dialogVisible = false" size="small" >取 消</el-button>
-        <el-button type="primary" @click="doUpdate" size="small" >确 定</el-button>
+        <el-button @click="dialogVisible = false" size="small">取 消</el-button>
+        <el-button type="primary" @click="doUpdate" size="small">确 定</el-button>
       </span>
     </el-dialog>
   </div>
@@ -61,100 +74,114 @@ export default {
       positions: [],
       //更新按钮的数据
       updatePos: {
-        name: '',
-        enabled:true
+        name: "",
+        enabled: true
       },
       //对话框显示与否的标志位
       dialogVisible: false,
       //批量删除的数据记录
-      multipleSelection:[]
-    }
+      multipleSelection: []
+    };
   },
   methods: {
     //表格数据初始化处理
-    async initPositions () {
-      const data = await this.getRequest('/system/basic/pos/')
+    async initPositions() {
+      const data = await this.getRequest("/system/basic/pos/");
       if (data) {
-        this.positions = data.obj
+        this.positions = data.obj;
       }
     },
     //添加新记录的事件处理
-    async addPosition () {
+    async addPosition() {
       if (this.pos.name) {
-        const resp = await this.postRequest('/system/basic/pos/', this.pos)
+        const resp = await this.postRequest("/system/basic/pos/", this.pos);
         if (resp) {
-          this.initPositions()
-          this.pos.name = ''
+          this.initPositions();
+          this.pos.name = "";
         }
       } else {
-        this.$message.error('职位名称不能为空')
+        this.$message.error("职位名称不能为空");
       }
     },
     //显示修改的对话框
-    showEditDialog (index, data) {
+    showEditDialog(index, data) {
       // this.updatePos = data //浅拷贝会改变表格的记录
-      Object.assign(this.updatePos, data)//使用深拷贝
-      this.dialogVisible = true
+      Object.assign(this.updatePos, data); //使用深拷贝
+      this.dialogVisible = true;
     },
     //弹框确认修改的事件处理
     async doUpdate() {
-      const resp = await this.putRequest('/system/basic/pos/', this.updatePos)
+      const resp = await this.putRequest("/system/basic/pos/", this.updatePos);
       if (resp) {
-        this.initPositions()
-        this.updatePos.name = ''
-        this.dialogVisible = false
+        this.initPositions();
+        this.updatePos.name = "";
+        this.dialogVisible = false;
       }
     },
     //表格记录的删除按钮的事件处理
-    handleDelete (index, data) {
-      this.$confirm('此操作将永久删除' + data.name + '职位, 是否继续?', '提示', {
-        confirmButtonText: '确定',
-        cancelButtonText: '取消',
-        type: 'warning'
-      }).then(() => {
-        this.deleteRequest('/system/basic/pos/' + data.id).then(resp => {
-          this.initPositions()
+    handleDelete(index, data) {
+      this.$confirm(
+        "此操作将永久删除" + data.name + "职位, 是否继续?",
+        "提示",
+        {
+          confirmButtonText: "确定",
+          cancelButtonText: "取消",
+          type: "warning"
+        }
+      )
+        .then(() => {
+          this.deleteRequest("/system/basic/pos/" + data.id).then(resp => {
+            this.initPositions();
+          });
         })
-      }).catch(() => {
-        this.$message({
-          type: 'info',
-          message: '已取消操作'
+        .catch(() => {
+          this.$message({
+            type: "info",
+            message: "已取消操作"
+          });
         });
-      });
-   },
-   //记录多选的处理
+    },
+    //记录多选的处理
     handleSelectionChange(val) {
-      console.log(val)
-      this.multipleSelection = val
+      console.log(val);
+      this.multipleSelection = val;
     },
     //批量删除
     deleteMany() {
-      this.$confirm('此操作将永久删除' + this.multipleSelection.length + '条记录, 是否继续?', '提示', {
-        confirmButtonText: '确定',
-        cancelButtonText: '取消',
-        type: 'warning'
-      }).then(() => {
-        //生成删除记录id的查询字符串
-        let ids = "?"
-        this.multipleSelection.forEach(item => {
-          ids += "ids=" + item.id + '&'
+      this.$confirm(
+        "此操作将永久删除" +
+          this.multipleSelection.length +
+          "条记录, 是否继续?",
+        "提示",
+        {
+          confirmButtonText: "确定",
+          cancelButtonText: "取消",
+          type: "warning"
+        }
+      )
+        .then(() => {
+          //生成删除记录id的查询字符串
+          let ids = "?";
+          this.multipleSelection.forEach(item => {
+            ids += "ids=" + item.id + "&";
+          });
+          this.deleteRequest("/system/basic/pos/" + ids).then(resp => {
+            this.initPositions();
+          });
         })
-        this.deleteRequest('/system/basic/pos/' + ids).then(resp => {
-          this.initPositions()
-        })
-      }).catch(() => {
-        this.$message({
-          type: 'info',
-          message: '已取消操作'
+        .catch(() => {
+          this.$message({
+            type: "info",
+            message: "已取消操作"
+          });
         });
-      });
     }
   },
   //在页面元素挂载后加载数据
-  mounted () {
-    this.initPositions()
+  mounted() {
+    this.initPositions();
   }
-}
+};
 </script>
 
 
@@ -164,8 +191,8 @@ export default {
   margin-right: 8px;
   margin-bottom: 16px;
 }
- .update_input {
-    width: 200px;
-    margin:0 0 8px 8px;
-  }
+.update_input {
+  width: 200px;
+  margin: 0 0 8px 8px;
+}
 </style>

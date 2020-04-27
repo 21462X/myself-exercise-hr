@@ -9,8 +9,11 @@ import { Button ,Form,FormItem,Input,Checkbox,Message,
     Tabs,TabPane,
     Table, TableColumn,
     Dialog,Tag,
-    Switch} from 'element-ui'
+    Switch,
+    Select,Option} from 'element-ui'
 
+    Vue.use(Select)
+    Vue.use(Option)
     Vue.use(Switch)
     Vue.use(Table)
     Vue.use(TableColumn)
