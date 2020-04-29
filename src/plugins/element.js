@@ -11,8 +11,9 @@ import { Button ,Form,FormItem,Input,Checkbox,Message,
     Dialog,Tag,
     Switch,
     Select,Option,
-    Collapse,CollapseItem,Card} from 'element-ui'
+    Collapse,CollapseItem,Card,Tree} from 'element-ui'
 
+    Vue.use(Tree)
     Vue.use(Card)
     Vue.use(Collapse)
     Vue.use(CollapseItem)
