@@ -10,8 +10,12 @@ import { Button ,Form,FormItem,Input,Checkbox,Message,
     Table, TableColumn,
     Dialog,Tag,
     Switch,
-    Select,Option} from 'element-ui'
+    Select,Option,
+    Collapse,CollapseItem,Card} from 'element-ui'
 
+    Vue.use(Card)
+    Vue.use(Collapse)
+    Vue.use(CollapseItem)
     Vue.use(Select)
     Vue.use(Option)
     Vue.use(Switch)
