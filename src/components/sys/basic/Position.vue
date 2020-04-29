@@ -15,15 +15,15 @@
         :data="positions"
         stripe
         border
-        type="small"
-        style="width: 70%"
+        type="mini"
+        style="width: 100%"
         @selection-change="handleSelectionChange"
       >
         <el-table-column type="selection" width="56"></el-table-column>
         <el-table-column prop="id" label="编号" width="56"></el-table-column>
-        <el-table-column prop="name" label="职位名称" width="180"></el-table-column>
-        <el-table-column prop="createdate" label="创建时间" width="200"></el-table-column>
-        <el-table-column prop="enabled" label="是否启用" width="200">
+        <el-table-column prop="name" label="职位名称" width="100"></el-table-column>
+        <el-table-column prop="createdate" label="创建时间" width="120"></el-table-column>
+        <el-table-column prop="enabled" label="是否启用" width="100">
           <template slot-scope="scope">
             <el-tag v-if="scope.row.enabled" type="success">已启用</el-tag>
             <el-tag v-else type="warning">未启用</el-tag>
